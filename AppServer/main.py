@@ -45,6 +45,25 @@ def add_credit_card():
 
     return jsonify({'token': token}), 200
 
+@app.route('/getcard', methods=['POST'])
+def get_card():
+    data = request.json
+
+    # Check if all required fields are provided
+    if 'token' not in data:
+        return jsonify({'error': 'Missing token field'}), 400
+
+    # load config
+    tsp_host = ''
+    with open('./config.json') as config:
+        tsp_host = json.load(config)['TSP_HOST']
+
+    # Tokenize credit card data
+    tsp_response = requests.get(f'{tsp_host}/get?token={data['token']}')
+    data = tsp_response.json()
+
+    return jsonify({'data': data}), 200
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=False)
