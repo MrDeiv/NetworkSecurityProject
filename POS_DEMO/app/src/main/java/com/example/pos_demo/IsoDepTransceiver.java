@@ -16,8 +16,26 @@ public class IsoDepTransceiver implements Runnable {
         this.isoDep = isoDep;
     }
 
-    private static final byte[] CLA_INS_P1_P2 = { 0x00, (byte)0xA4, 0x04, 0x00 };
-    private static final byte[] AID_ANDROID = { (byte)0xF0, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 };
+    private byte[] PPSE = "2PAY.SYS.DDF01".getBytes();
+
+    private static byte[] MASTERCARD_AID = {(byte)0xA0,
+                                            (byte)0x00,
+                                            (byte)0x00,
+                                            (byte)0x00,
+                                            (byte)0x04,
+                                            (byte)0x10,
+                                            (byte)0x10};
+    private static final byte[] CLA_INS_P1_P2 = { (byte)0x00,
+                                                  (byte)0xA4,
+                                                  (byte)0x04,
+                                                  (byte)0x00 };
+    private static final byte[] AID_ANDROID = { (byte)0xF0,
+                                                (byte)0x01,
+                                                (byte)0x02,
+                                                (byte)0x03,
+                                                (byte)0x04,
+                                                (byte)0x05,
+                                                (byte)0x06 };
 
     private byte[] createSelectAidApdu(byte[] aid) {
         byte[] result = new byte[6 + aid.length];
@@ -33,12 +51,24 @@ public class IsoDepTransceiver implements Runnable {
         int messageCounter = 0;
         try {
             isoDep.connect();
-            byte[] response = isoDep.transceive(createSelectAidApdu(AID_ANDROID));
+            Log.d("POS","PPSE COMMAND");
+            byte[] PPSE_REQUEST = createSelectAidApdu(PPSE);
+            Log.d("POS","PPSE REQUEST "+ Utils.ByteToHexadecimal(PPSE_REQUEST));
+            byte[] response = isoDep.transceive(PPSE_REQUEST);
+            Log.d("POS","PPSE RESPONSE "+ Utils.ByteToHexadecimal(response));
+
+            Log.d("POS","SELECT AID");
+            byte[] AID_REQUEST = createSelectAidApdu(MASTERCARD_AID);
+            Log.d("POS","AID REQUEST "+ Utils.ByteToHexadecimal(AID_REQUEST));
+            response = isoDep.transceive(AID_REQUEST);
+            Log.d("POS","AID RESPONSE "+ Utils.ByteToHexadecimal(response));
+
+            /*
             while (isoDep.isConnected() && !Thread.interrupted()) {
-                String message = "CI CODDIAMO PURE A MARTALO " + messageCounter++;
-                response = isoDep.transceive(message.getBytes());
-                Log.d("POS", new String(response));
+
             }
+            */
+
             isoDep.close();
         }
         catch (IOException e) {

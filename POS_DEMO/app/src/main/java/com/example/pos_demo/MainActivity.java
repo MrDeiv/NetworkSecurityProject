@@ -4,11 +4,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcAdapter.ReaderCallback;
 import android.nfc.Tag;
 import android.nfc.tech.IsoDep;
-import android.widget.ListView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.pos_demo.IsoDepTransceiver;
 
 import android.os.Bundle;
 

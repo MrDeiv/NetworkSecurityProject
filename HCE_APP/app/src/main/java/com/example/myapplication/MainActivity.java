@@ -1,0 +1,18 @@
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        TextView textView = (TextView) findViewById(R.id.cardNumber);
+        textView.setText("1234 5678 9012 3478"); //set text for text view
+
+    }
+}
