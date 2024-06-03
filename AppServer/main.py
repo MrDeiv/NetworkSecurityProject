@@ -30,6 +30,8 @@ def add_credit_card():
     with open('./config.json') as config:
         tsp_host = json.load(config)['TSP_HOST']
 
+    print("Sending to TSP..")
+
     # Tokenize credit card data
     tsp_response = requests.post(f'{tsp_host}/tokenize', json=data)
     token = tsp_response.json()['token']
