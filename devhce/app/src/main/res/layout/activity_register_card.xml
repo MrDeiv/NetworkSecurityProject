@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/registercard"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextCreditNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Credit Card Number"
+        android:inputType="number"
+        android:maxLength="19"
+        android:importantForAccessibility="yes"/>
+
+    <EditText
+        android:id="@+id/editTextOwner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Owner Name"
+        android:inputType="textPersonName"
+        android:importantForAccessibility="yes"/>
+
+    <EditText
+        android:id="@+id/editTextCVV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CVV"
+        android:inputType="number"
+        android:maxLength="3"
+        android:importantForAccessibility="yes"/>
+
+    <EditText
+        android:id="@+id/editTextExpiration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Expiration Date (MM/YY)"
+        android:inputType="date"
+        android:maxLength="5"
+        android:importantForAccessibility="yes"/>
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:importantForAccessibility="yes"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="91dp"
+        android:layout_height="105dp"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        tools:visibility="gone" />
+</LinearLayout>
