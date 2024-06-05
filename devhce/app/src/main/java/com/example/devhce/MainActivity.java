@@ -1,5 +1,6 @@
 package com.example.devhce;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,16 +18,19 @@ import com.example.devhce.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
+
 public class MainActivity extends AppCompatActivity {
     private TextView cardNumber;
     private TextView owner;
     private TextView expire;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+       // sd = new sharedData();
 
         cardNumber = (TextView) findViewById(R.id.cardNumber);
         owner = (TextView) findViewById(R.id.cardHolderName);
@@ -43,8 +47,12 @@ public class MainActivity extends AppCompatActivity {
         // Only for debug purpuse
         String token = sharedPreferences.getString("token","token");
         if(token != "token"){
+            //sd.token = token;
             Toast.makeText(this, "Token "+token,Toast.LENGTH_SHORT).show();
         }
+
+        ComponentName paymentServiceComponent =
+                new ComponentName(getApplicationContext(), HCEService.class.getCanonicalName());
 
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override

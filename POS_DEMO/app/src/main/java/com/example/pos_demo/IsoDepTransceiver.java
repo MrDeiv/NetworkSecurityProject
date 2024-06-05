@@ -16,15 +16,6 @@ public class IsoDepTransceiver implements Runnable {
         this.isoDep = isoDep;
     }
 
-    private byte[] PPSE = "2PAY.SYS.DDF01".getBytes();
-
-    private static byte[] MASTERCARD_AID = {(byte)0xA0,
-                                            (byte)0x00,
-                                            (byte)0x00,
-                                            (byte)0x00,
-                                            (byte)0x04,
-                                            (byte)0x10,
-                                            (byte)0x10};
     private static final byte[] CLA_INS_P1_P2 = { (byte)0x00,
                                                   (byte)0xA4,
                                                   (byte)0x04,
@@ -51,28 +42,16 @@ public class IsoDepTransceiver implements Runnable {
         int messageCounter = 0;
         try {
             isoDep.connect();
-            Log.d("POS","PPSE COMMAND");
-            byte[] PPSE_REQUEST = createSelectAidApdu(PPSE);
-            Log.d("POS","PPSE REQUEST "+ Utils.ByteToHexadecimal(PPSE_REQUEST));
-            byte[] response = isoDep.transceive(PPSE_REQUEST);
-            Log.d("POS","PPSE RESPONSE "+ Utils.ByteToHexadecimal(response));
-
-            Log.d("POS","SELECT AID");
-            byte[] AID_REQUEST = createSelectAidApdu(MASTERCARD_AID);
-            Log.d("POS","AID REQUEST "+ Utils.ByteToHexadecimal(AID_REQUEST));
-            response = isoDep.transceive(AID_REQUEST);
-            Log.d("POS","AID RESPONSE "+ Utils.ByteToHexadecimal(response));
-
-            /*
             while (isoDep.isConnected() && !Thread.interrupted()) {
-
+                 Log.d("hce_pos","SELECT AID");
+                 byte[] AID_REQUEST = createSelectAidApdu(AID_ANDROID);
+                 byte[] response = isoDep.transceive(AID_REQUEST);
+                 Log.d("hce_pos","AID RESPONSE "+  new String(response));
             }
-            */
-
             isoDep.close();
         }
         catch (IOException e) {
-            Log.d("POS", e.toString());
+            Log.d("hce_pos", e.toString());
         }
     }
 }
