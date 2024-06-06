@@ -24,22 +24,24 @@ public class MainActivity extends AppCompatActivity {
     private TextView owner;
     private TextView expire;
 
+    private SharedPreferences sharedPreferences;
+
+    private  FloatingActionButton fabAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // sd = new sharedData();
 
         cardNumber = (TextView) findViewById(R.id.cardNumber);
         owner = (TextView) findViewById(R.id.cardHolderName);
         expire = (TextView)findViewById(R.id.cardExpiry);
-        FloatingActionButton fabAdd = findViewById(R.id.fab);
+        fabAdd = findViewById(R.id.fab);
 
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences("CardData", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("CardData", MODE_PRIVATE);
         cardNumber.setText(Utils.insertSpaces(sharedPreferences.getString("CardNumber","1111222233334444")));
         owner.setText(sharedPreferences.getString("owner","owner"));
         expire.setText(sharedPreferences.getString("expire","MM/YY"));
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        SharedPreferences sharedPreferences = getSharedPreferences("CardData", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("CardData", MODE_PRIVATE);
         cardNumber.setText(Utils.insertSpaces(sharedPreferences.getString("CardNumber","1111222233334444")));
         owner.setText(sharedPreferences.getString("owner","ower"));
         expire.setText(sharedPreferences.getString("expire","MM/YY"));
