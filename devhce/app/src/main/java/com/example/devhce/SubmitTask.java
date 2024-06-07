@@ -65,9 +65,6 @@ public class SubmitTask extends AsyncTask<String, Void, Boolean> {
         return true;
     }
 
-    public boolean getStat(){
-        return status;
-    }
 
     @Override
     protected void onPostExecute(Boolean result) {

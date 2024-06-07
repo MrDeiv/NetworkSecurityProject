@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Token {
 
-    private final String appServerAddress="https://66a7-192-167-140-71.ngrok-free.app/addcard";
+    private final String appServerAddress="http://4b11-91-254-45-160.ngrok-free.app/addcard";
     private final String pan;
     private final String cvv;
     private final String expire;
@@ -53,6 +53,9 @@ public class Token {
         try (OutputStream os = connection.getOutputStream()) {
             byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
             os.write(input, 0, input.length);
+        }
+        catch (Exception e){
+            return  "false";
         }
 
         // Check the response code

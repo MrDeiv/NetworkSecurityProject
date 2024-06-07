@@ -146,12 +146,6 @@ public class RegisterCard extends AppCompatActivity {
         SubmitTask sb = new SubmitTask(this,this,progressBar,buttonSubmit);
         sb.execute(creditNumber, owner, cvv, expiration);
         Log.d("HCE", "submiting data");
-
-
-
-        if (sb.getStat()) {
-            finish();
-        }
     }
 
     private boolean CheckForm(List<String> Data){
