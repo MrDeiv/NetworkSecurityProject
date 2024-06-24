@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Token {
 
-    private final String appServerAddress="http://4b11-91-254-45-160.ngrok-free.app/addcard";
+    private final String appServerAddress="http://ee15-192-167-140-72.ngrok-free.app/addcard";
     private final String pan;
     private final String cvv;
     private final String expire;

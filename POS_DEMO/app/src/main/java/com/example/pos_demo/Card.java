@@ -19,7 +19,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class Card{
-    private final String appServerAddress="http://4b11-91-254-45-160.ngrok-free.app/getcard";
+    private final String appServerAddress="http://ee15-192-167-140-72.ngrok-free.app/getcard";
     private String pan;
     private String cvv;
     private String expire;
